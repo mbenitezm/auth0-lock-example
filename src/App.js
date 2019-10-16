@@ -1,24 +1,26 @@
 import React from 'react';
+import Auth0Lock from 'auth0-lock';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const options = {
+    language: 'es',
+    theme: {
+      logo,
+      primaryColor: '#0c217b',
+    }
+  };
+
+  const lock = new Auth0Lock(
+    'vqfJzynAoS2giMFbogqxcCMdGcK121So',
+    'reservamos.auth0.com',
+    options
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => lock.show()}>Login</button>
     </div>
   );
 }
